@@ -1,0 +1,28 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width:100vw;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, white 0%, beige 20%,beige 80%, white 100%);
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1,
+h2,
+p {
+    color: #8a5555;
+    text-align: center;
+    margin: 0;
+}
+
+.header {
+    margin: 15px;
+    font-size: 3rem;
+}
