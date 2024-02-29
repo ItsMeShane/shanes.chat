@@ -17,7 +17,10 @@ import {
 
 const Screen = () => {
     const [inputValue, setInputValue] = useState('');
-    const [messageList, setMessageList] = useState([]);
+    const [messageList, setMessageList] = useState([
+        { text: "Hey, I'm Shane.", sender: 'shane' },
+        { text: "How can I help you?", sender: 'shane' },
+    ]);
     const messagesEndRef = useRef(null);
 
     const handleInputChange = (event) => {
@@ -56,15 +59,12 @@ const Screen = () => {
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }, [messageList]);
 
-
     return (
         <ScreenContainer>
             <ScreenHeader>
                 <HeaderBackBtn>🡠</HeaderBackBtn>
                 <HeaderProfile>
-                    <HeaderInfo>
-                        
-                    </HeaderInfo>
+                    <HeaderInfo></HeaderInfo>
                     <ProfileImage src='face.png' alt='pfp' />
                     <ProfileName>Shane</ProfileName>
                 </HeaderProfile>
