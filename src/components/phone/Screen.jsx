@@ -20,6 +20,7 @@ const Screen = () => {
     const [messageList, setMessageList] = useState([
         { text: "Hey, I'm Shane.", sender: 'shane' },
         { text: "How can I help you?", sender: 'shane' },
+        { text: "My API key is: " + process.env.REACT_APP_OPENAI_API_KEY, sender: 'shane' },
     ]);
     const messagesEndRef = useRef(null);
 
