@@ -14,13 +14,13 @@ import {
     ReceivedMessage,
     HeaderInfo,
 } from './ScreenStyles';
+import OpenAI from 'openai';
 
 const Screen = () => {
     const [inputValue, setInputValue] = useState('');
     const [messageList, setMessageList] = useState([
         { text: "Hey, I'm Shane.", sender: 'shane' },
-        { text: "How can I help you?", sender: 'shane' },
-        { text: "My API key is: " + process.env.REACT_APP_OPENAI_API_KEY, sender: 'shane' },
+        { text: 'How can I help you?', sender: 'shane' },
     ]);
     const messagesEndRef = useRef(null);
 
@@ -35,25 +35,76 @@ const Screen = () => {
         }
     };
 
-    const sendMessage = () => {
-        if (inputValue.trim() !== '') {
-            // add user message to chat
-            setMessageList((prevMessages) => [
-                ...prevMessages,
-                { text: inputValue, sender: 'user' },
-            ]);
+    const openai = new OpenAI({
+        apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+        dangerouslyAllowBrowser: true,
+    });
 
-            // temp receive message
-            setTimeout(() => {
+    const sendMessage = async () => {
+        if (inputValue.trim() === '') {
+            return;
+        }
+        // add user message to chat
+        setMessageList((prevMessages) => [
+            ...prevMessages,
+            { text: inputValue, sender: 'user' },
+        ]);
+        // clear text area
+        setInputValue('');
+
+        // send message to OpenAI
+        try {
+            const thread = await openai.beta.threads.create();
+            await openai.beta.threads.messages.create(thread.id, {
+                role: 'user',
+                content: inputValue,
+            });
+
+            const run = await openai.beta.threads.runs.create(thread.id, {
+                assistant_id: process.env.REACT_APP_OPENAI_ASSISTANT_ID,
+            });
+
+            let runStatus = await openai.beta.threads.runs.retrieve(
+                thread.id,
+                run.id
+            );
+
+            while (runStatus.status !== 'completed') {
+                await new Promise((resolve) => setTimeout(resolve, 2000));
+                runStatus = await openai.beta.threads.runs.retrieve(
+                    thread.id,
+                    run.id
+                );
+            }
+
+            const assistantMessage = await openai.beta.threads.messages.list(
+                thread.id
+            );
+
+            const lastMessageForRun = assistantMessage.data
+                .filter(
+                    (message) =>
+                        message.run_id === run.id &&
+                        message.role === 'assistant'
+                )
+                .pop();
+
+            if (lastMessageForRun) {
+                const assistantResponse =
+                    lastMessageForRun.content[0].text.value.replaceAll(
+                        /【.*?】/g,
+                        ''
+                    );
+
                 setMessageList((prevMessages) => [
                     ...prevMessages,
-                    { text: "Hi, I'm Shane", sender: 'shane' },
+                    { text: assistantResponse, sender: 'shane' },
                 ]);
-            }, 500);
-
-            // reset textInput
-            setInputValue('');
+            }
+        } catch (error) {
+            console.error('Failed to send message to OpenAI');
         }
+
     };
 
     useEffect(() => {
@@ -62,6 +113,7 @@ const Screen = () => {
 
     return (
         <ScreenContainer>
+            {/* header */}
             <ScreenHeader>
                 <HeaderBackBtn>🡠</HeaderBackBtn>
                 <HeaderProfile>
@@ -71,6 +123,7 @@ const Screen = () => {
                 </HeaderProfile>
                 <HeaderCallBtn>🕽</HeaderCallBtn>
             </ScreenHeader>
+            {/* messages */}
             <Messages>
                 {messageList.map((message, index) =>
                     message.sender === 'user' ? (
@@ -83,6 +136,7 @@ const Screen = () => {
                 )}
                 <div ref={messagesEndRef} />
             </Messages>
+            {/* input */}
             <InputContainer>
                 <InputTextArea
                     value={inputValue}
