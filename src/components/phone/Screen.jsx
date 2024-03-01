@@ -102,6 +102,7 @@ const Screen = () => {
                 ]);
             }
         } catch (error) {
+            console.error(error);
             console.error('Failed to send message to OpenAI');
         }
 
