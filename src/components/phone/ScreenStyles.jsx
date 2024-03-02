@@ -64,7 +64,7 @@ export const ProfileName = styled.span`
    text-align: center;
 `;
 
-export const HeaderBackBtn = styled.button`
+export const BackBtn = styled.button`
    font-size: 2rem;
    margin-right: auto;
    margin-left: 40px;
@@ -77,7 +77,7 @@ export const HeaderBackBtn = styled.button`
    cursor: pointer;
 `;
 
-export const HeaderCallBtn = styled.button`
+export const ResetBtn = styled.button`
    font-size: 2rem;
    margin-left: auto;
    margin-right: 40px;

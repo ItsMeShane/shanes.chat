@@ -5,8 +5,8 @@ import {
    HeaderProfile,
    ProfileImage,
    ProfileName,
-   HeaderBackBtn,
-   HeaderCallBtn,
+   BackBtn,
+   ResetBtn,
    InputContainer,
    InputTextArea,
    Messages,
@@ -14,22 +14,39 @@ import {
    ReceivedMessage,
    ChatButton,
 } from './ScreenStyles';
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-   dangerouslyAllowBrowser: true,
-});
-
-// create thread
-const thread = await openai.beta.threads.create();
+import {
+   createThread,
+   loadMessages,
+   sendMessageToAssistant,
+   getStarterMessages,
+} from './Assistant';
 
 const Screen = () => {
    const [textAreaValue, setTextAreaValue] = useState('');
-   const [messageList, setMessageList] = useState([
-      { text: "Hey, I'm Shane's Assistant.", sender: 'assistant' },
-      { text: 'How can I help you?', sender: 'assistant' },
-   ]);
+   const [messageList, setMessageList] = useState([getStarterMessages]);
+
+   const [threadId, setThreadId] = useState(null);
+   // loads saved thread & messages if saved locally
+   // else creates new thread & messages
+   useEffect(() => {
+      const initializeConversation = async () => {
+         const storedThreadId = localStorage.getItem('threadId');
+         let loadedMessages = [];
+         if (storedThreadId) {
+            setThreadId(storedThreadId);
+            loadedMessages = await loadMessages(storedThreadId);
+         } else {
+            const newThreadId = await createThread();
+            setThreadId(newThreadId);
+            localStorage.setItem('threadId', newThreadId);
+         }
+         // Load starter messages
+         const starterMessages = await getStarterMessages();
+         setMessageList([...starterMessages, ...loadedMessages]);
+      };
+
+      initializeConversation();
+   }, []);
 
    // auto scroll to bottom
    const messagesEndRef = useRef(null);
@@ -37,6 +54,7 @@ const Screen = () => {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
    }, [messageList]);
 
+   // shift + enter adds line
    const handleKeyDown = (event) => {
       if (event.key === 'Enter' && !event.shiftKey) {
          event.preventDefault();
@@ -56,36 +74,13 @@ const Screen = () => {
       // clear text area
       setTextAreaValue('');
 
+      // get then add assistant message to chat
       try {
-         // create message
-         await openai.beta.threads.messages.create(thread.id, {
-            role: 'user',
-            content: textAreaValue,
-         });
-         // send message to openai assistant
-         const run = await openai.beta.threads.runs.create(thread.id, {
-            assistant_id: process.env.REACT_APP_OPENAI_ASSISTANT_ID,
-         });
-
-         // wait for assistant response
-         let runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
-         while (runStatus.status !== 'completed') {
-            // check once every second to see if assistant finished messge
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
-         }
-
-         // get assistant response
-         const assistantResponse = (
-            await openai.beta.threads.messages.list(thread.id)
-         ).data.find((message) => message.role === 'assistant');
-
-         const assistantMessage = assistantResponse.content[0].text.value;
-
+         const assistantMessage = await sendMessageToAssistant(threadId, textAreaValue);
          addMessageToChat(assistantMessage, 'assistant');
       } catch (error) {
+         console.error('Failed to send message to Assistant');
          console.error(error);
-         console.error('Failed to send message to OpenAI');
       }
    };
 
@@ -96,16 +91,27 @@ const Screen = () => {
       ]);
    };
 
+   const ResetThread = () => {
+      // create a new thread and update saved data
+      createThread().then((newThreadId) => {
+         setThreadId(newThreadId);
+         localStorage.setItem('chatThreadId', newThreadId);
+         // clear message list
+         setMessageList([]);
+         getStarterMessages().then((starterMessages) => setMessageList(starterMessages));
+      });
+   };
+
    return (
       <ScreenContainer>
          {/* header */}
          <ScreenHeader>
-            <HeaderBackBtn>🡠</HeaderBackBtn>
+            <BackBtn>B</BackBtn>
             <HeaderProfile>
                <ProfileImage src='pfp.png' alt='pfp' />
                <ProfileName>Shane's Assistant</ProfileName>
             </HeaderProfile>
-            <HeaderCallBtn>🕽</HeaderCallBtn>
+            <ResetBtn onClick={ResetThread}>R</ResetBtn>
          </ScreenHeader>
          {/* messages */}
          <Messages>
@@ -122,7 +128,7 @@ const Screen = () => {
          <InputContainer>
             <InputTextArea
                value={textAreaValue}
-               placeholder='Ask me about Shane!'
+               placeholder='Ask about Shane!'
                onChange={(e) => setTextAreaValue(e.target.value)}
                onKeyDown={handleKeyDown}
             />
