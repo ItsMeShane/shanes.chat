@@ -54,8 +54,8 @@ export const ProfileImage = styled.img`
    object-fit: cover;
    
    transition: all 0.2s ease-in-out;
-   &:active {
-      scale: 1.1;
+   &:hover {
+      scale: 1.07;
    }
 `;
 
@@ -149,11 +149,9 @@ export const InputTextArea = styled.textarea`
 
 export const ChatButton = styled.button`
    background-color: transparent;
-   min-height: 55px;
-   min-width: 55px;
-   max-height: 55px;
-   max-width: 55px;
-   color: #fff;
+   width:fit-content;
+   height:fit-content;
+   margin:5px;
    border: none;
    cursor: pointer;
    font-size: 3rem;

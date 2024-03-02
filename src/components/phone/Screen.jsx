@@ -41,7 +41,7 @@ const Screen = () => {
             localStorage.setItem('threadId', newThreadId);
          }
          // Load starter messages
-         const starterMessages = await getStarterMessages();
+         const starterMessages = getStarterMessages();
          setMessageList([...starterMessages, ...loadedMessages]);
       };
 

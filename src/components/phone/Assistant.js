@@ -16,8 +16,8 @@ const createThread = async () => {
 // load messages from saved thread
 const loadMessages = async (threadId) => {
    try {
-      const messagesResponse = await openai.beta.threads.messages.list(threadId);
-      const messages = messagesResponse.data
+      const assistanceResponse = await openai.beta.threads.messages.list(threadId);
+      const messages = assistanceResponse.data
          .map((message) => ({
             text: message.content[0].text.value,
             sender: message.role === 'user' ? 'user' : 'assistant',
@@ -68,7 +68,7 @@ const sendMessageToAssistant = async (threadId, text) => {
    }
 };
 
-const getStarterMessages = async () => {
+const getStarterMessages = () => {
    return [
       { text: "Hey, I'm Shane's Assistant.", sender: 'assistant' },
       { text: 'How can I help you?', sender: 'assistant' },
