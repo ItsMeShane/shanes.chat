@@ -12,7 +12,6 @@ import {
    Messages,
    SentMessage,
    ReceivedMessage,
-   HeaderInfo,
    ChatButton,
 } from './ScreenStyles';
 import OpenAI from 'openai';
