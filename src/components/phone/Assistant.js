@@ -21,7 +21,7 @@ const loadMessages = async (threadId) => {
          .map((message) => ({
             text: message.content[0].text.value,
             sender: message.role === 'user' ? 'user' : 'assistant',
-         }))
+         })) 
          .reverse();
       return messages;
    } catch (error) {
@@ -56,11 +56,11 @@ const sendMessageToAssistant = async (threadId, text) => {
          await openai.beta.threads.messages.list(threadId)
       ).data.find((message) => message.role === 'assistant');
 
-      const assistantMessage = assistantResponse.content[0].text.value;
-      // remove all file referenced
-      const cleanedAssistantMessage = assistantMessage.replaceAll(/【.*?】/g, '');
+      let assistantMessage = assistantResponse.content[0].text.value;
+      // remove all file references
+      assistantMessage = assistantMessage.replaceAll(/【.*?】/g, '');
 
-      return cleanedAssistantMessage;
+      return assistantMessage;
    } catch (error) {
       console.error(error);
       console.error('Failed to send message to OpenAI');
