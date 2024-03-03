@@ -68,10 +68,10 @@ const sendMessageToAssistant = async (threadId, text) => {
    }
 };
 
-const getStarterMessages = () => {
-   return [
-      { text: "Hey, I'm Shane's Assistant.", sender: 'assistant' },
-      { text: 'How can I help you?', sender: 'assistant' },
-   ];
-};
-export { createThread, loadMessages, sendMessageToAssistant, getStarterMessages };
+const starterMessages = [
+   { text: "Hey, I'm Shane's Assistant.", sender: 'assistant' },
+   { text: 'How can I help you?', sender: 'assistant' },
+ ];
+ 
+ export { createThread, loadMessages, sendMessageToAssistant };
+ export default starterMessages;

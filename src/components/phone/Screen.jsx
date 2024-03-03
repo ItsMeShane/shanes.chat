@@ -18,12 +18,13 @@ import {
    createThread,
    loadMessages,
    sendMessageToAssistant,
-   getStarterMessages,
+   // getStarterMessages,
 } from './Assistant';
+import starterMessages from './Assistant';
 
 const Screen = () => {
    const [textAreaValue, setTextAreaValue] = useState('');
-   const [messageList, setMessageList] = useState([getStarterMessages]);
+   const [messageList, setMessageList] = useState([starterMessages]);
 
    const [threadId, setThreadId] = useState(null);
    // loads saved thread & messages if saved locally
@@ -41,7 +42,7 @@ const Screen = () => {
             localStorage.setItem('threadId', newThreadId);
          }
          // Load starter messages
-         const starterMessages = getStarterMessages();
+         // const starterMessages = getStarterMessages();
          setMessageList([...starterMessages, ...loadedMessages]);
       };
 
@@ -95,10 +96,9 @@ const Screen = () => {
       // create a new thread and update saved data
       createThread().then((newThreadId) => {
          setThreadId(newThreadId);
-         localStorage.setItem('chatThreadId', newThreadId);
+         localStorage.setItem('threadId', newThreadId);
          // clear message list
-         setMessageList([]);
-         getStarterMessages().then((starterMessages) => setMessageList(starterMessages));
+         setMessageList(starterMessages);
       });
    };
 
