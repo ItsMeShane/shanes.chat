@@ -2,11 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
    ChatContainer,
    ChatHeader,
-   HeaderProfile,
    ProfileImage,
-   ProfileName,
-   BackBtn,
-   ResetBtn,
    InputContainer,
    InputTextArea,
    Messages,
@@ -92,7 +88,7 @@ const Chat = () => {
       ]);
    };
 
-   const ResetThread = () => {
+   const resetThread = () => {
       // create a new thread and update saved data
       createThread().then((newThreadId) => {
          setThreadId(newThreadId);
@@ -106,7 +102,7 @@ const Chat = () => {
       <ChatContainer>
          <Messages>
             <ChatHeader>
-               <ProfileImage src='pfp.png' alt='pfp' />
+               <ProfileImage onClick={resetThread} src='pfp.png' alt='pfp' />
             </ChatHeader>
             {messageList.map((message, index) =>
                message.sender === 'user' ? (
