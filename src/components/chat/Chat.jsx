@@ -10,19 +10,16 @@ import {
    ReceivedMessage,
    ChatButton,
 } from './ChatStyles';
-import {
-   createThread,
-   loadMessages,
-   sendMessageToAssistant,
-   // getStarterMessages,
-} from './Assistant';
+import { createThread, loadMessages, sendMessageToAssistant } from './Assistant';
 import starterMessages from './Assistant';
+import TypeingMessage from './TypeingMessage';
 
 const Chat = () => {
    const [textAreaValue, setTextAreaValue] = useState('');
    const [messageList, setMessageList] = useState([starterMessages]);
-
    const [threadId, setThreadId] = useState(null);
+   const [isTypeing, setIsTypeing] = useState(false);
+
    // loads saved thread & messages if saved locally
    // else creates new thread & messages
    useEffect(() => {
@@ -49,7 +46,7 @@ const Chat = () => {
    const messagesEndRef = useRef(null);
    useEffect(() => {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-   }, [messageList]);
+   }, [messageList, isTypeing]);
 
    // shift + enter adds line
    const handleKeyDown = (event) => {
@@ -63,6 +60,11 @@ const Chat = () => {
       if (textAreaValue.trim() === '') {
          return;
       }
+      if (messageList[messageList.length - 1].sender !== 'assistant') {
+         // cant send back-to-back messages
+         return;
+      }
+
       // add user message to chat
       setMessageList((prevMessages) => [
          ...prevMessages,
@@ -71,13 +73,21 @@ const Chat = () => {
       // clear text area
       setTextAreaValue('');
 
+      // show typing visual
+      let typingTimeout = setTimeout(function () {
+         setIsTypeing(true);
+      }, 1000);
+
       // get then add assistant message to chat
       try {
          const assistantMessage = await sendMessageToAssistant(threadId, textAreaValue);
          addMessageToChat(assistantMessage, 'assistant');
+         clearTimeout(typingTimeout);
       } catch (error) {
          console.error('Failed to send message to Assistant');
          console.error(error);
+      } finally {
+         setIsTypeing(false);
       }
    };
 
@@ -111,6 +121,7 @@ const Chat = () => {
                   <ReceivedMessage key={index}>{message.text}</ReceivedMessage>
                )
             )}
+            {isTypeing && <TypeingMessage ref={messagesEndRef} />}
             <div ref={messagesEndRef} />
          </Messages>
          <InputContainer>
