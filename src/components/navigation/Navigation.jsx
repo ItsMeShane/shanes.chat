@@ -7,7 +7,6 @@ import {
    ListItem,
    NavigationContainer,
 } from './NavigationStyles';
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
 const Navigation = ({ onPageChange }) => {
    const [activeLink, setActiveLink] = useState(() => {
@@ -59,7 +58,7 @@ const Navigation = ({ onPageChange }) => {
                   href='#chat'
                >
                   <Icon>
-                     <IoChatboxEllipsesOutline />
+                     <ion-icon name='chatbox-ellipses-outline'></ion-icon>{' '}
                   </Icon>
                </Link>
             </ListItem>
@@ -78,7 +77,7 @@ const Navigation = ({ onPageChange }) => {
                <Link
                   className={activeLink === 4 ? 'active' : ''}
                   onClick={() => handleLinkClick(4)}
-                  href='#contact'
+                  href='#quiz'
                >
                   <Icon>
                      <ion-icon name='people-outline'></ion-icon>
