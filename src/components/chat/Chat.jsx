@@ -108,31 +108,31 @@ const Chat = () => {
    };
 
    return (
-      <ChatContainer>
-         <Messages>
-            <ChatHeader>
-               <ProfileImage onClick={resetThread} src='pfp.png' alt='pfp' />
-            </ChatHeader>
-            {messageList.map((message, index) =>
-               message.sender === 'user' ? (
-                  <SentMessage key={index}>{message.text}</SentMessage>
-               ) : (
-                  <ReceivedMessage key={index}>{message.text}</ReceivedMessage>
-               )
-            )}
-            {isTypeing && <TypeingMessage ref={messagesEndRef} />}
-            <div ref={messagesEndRef} />
-         </Messages>
-         <InputContainer>
-            <InputTextArea
-               value={textAreaValue}
-               placeholder='Ask about Shane!'
-               onChange={(e) => setTextAreaValue(e.target.value)}
-               onKeyDown={handleKeyDown}
-            />
-            <ChatButton onClick={sendMessage}>↑</ChatButton>
-         </InputContainer>
-      </ChatContainer>
+         <ChatContainer>
+            <Messages>
+               <ChatHeader>
+                  <ProfileImage onClick={resetThread} src='pfp.png' alt='pfp' />
+               </ChatHeader>
+               {messageList.map((message, index) =>
+                  message.sender === 'user' ? (
+                     <SentMessage key={index}>{message.text}</SentMessage>
+                  ) : (
+                     <ReceivedMessage key={index}>{message.text}</ReceivedMessage>
+                  )
+               )}
+               {isTypeing && <TypeingMessage ref={messagesEndRef} />}
+               <div ref={messagesEndRef} />
+            </Messages>
+            <InputContainer>
+               <InputTextArea
+                  value={textAreaValue}
+                  placeholder='Ask about Shane!'
+                  onChange={(e) => setTextAreaValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+               />
+               <ChatButton onClick={sendMessage}>↑</ChatButton>
+            </InputContainer>
+         </ChatContainer>
    );
 };
 
