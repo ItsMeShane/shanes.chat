@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '../navigation/Navigation';
 import styled from 'styled-components';
-import Chat from '../chat/Chat';
+import About from '../about/About';
 import Projects from '../projects/Projects';
+import Chat from '../chat/Chat';
+import Work from '../work/Work';
+import Quiz from '../quiz/Quiz';
 
 const Screen = () => {
    const [activePage, setActivePage] = useState(() => {
@@ -24,8 +27,11 @@ const Screen = () => {
       <ScreenContainer>
          <Navigation onPageChange={handlePageChange} />
          <PageContainer>
-            {activePage === 'Chat' && <Chat />}
+            {activePage === 'About' && <About />}
             {activePage === 'Projects' && <Projects />}
+            {activePage === 'Chat' && <Chat />}
+            {activePage === 'Work' && <Work />}
+            {activePage === 'Quiz' && <Quiz />}
          </PageContainer>
       </ScreenContainer>
    );

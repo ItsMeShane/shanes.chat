@@ -7,10 +7,11 @@ import {
    ListItem,
    NavigationContainer,
 } from './NavigationStyles';
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
 const Navigation = ({ onPageChange }) => {
    const [activeLink, setActiveLink] = useState(() => {
-      // load active link from local storage or default to 2 (chat)
+      // load active link from local storage or default to 2 (hat)
       const savedActiveLink = localStorage.getItem('activeLink');
       return savedActiveLink ? parseInt(savedActiveLink) : 2;
    });
@@ -22,7 +23,7 @@ const Navigation = ({ onPageChange }) => {
 
    const handleLinkClick = (index) => {
       setActiveLink(index);
-      const pages = ['About', 'Projects', 'Chat', 'Work', 'Contact'];
+      const pages = ['About', 'Projects', 'Chat', 'Work', 'Quiz'];
       onPageChange(pages[index]);
    };
 
@@ -58,7 +59,7 @@ const Navigation = ({ onPageChange }) => {
                   href='#chat'
                >
                   <Icon>
-                     <ion-icon name='chatbox-ellipses-outline'></ion-icon>
+                     <IoChatboxEllipsesOutline />
                   </Icon>
                </Link>
             </ListItem>
