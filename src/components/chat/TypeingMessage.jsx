@@ -42,7 +42,7 @@ const TypeingMessage = React.forwardRef(() => {
 
    return (
       <TypeingMessageWrapper>
-         {dots.map((dot, $index) => (
+         {dots.map(($index) => (
             <Dot key={$index} $delay={`${$index * 0.33}s`} />
          ))}
       </TypeingMessageWrapper>
