@@ -35,7 +35,6 @@ const Chat = () => {
             localStorage.setItem('threadId', newThreadId);
          }
          // Load starter messages
-         // const starterMessages = getStarterMessages();
          setMessageList([...starterMessages, ...loadedMessages]);
       };
 

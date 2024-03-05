@@ -31,7 +31,7 @@ const Dot = styled.div`
    animation-delay: ${(props) => props.$delay};
 `;
 
-const TypeingMessage = () => {
+const TypeingMessage = React.forwardRef(() => {
    const [dots, setDots] = useState(['', '', '']);
 
    useEffect(() => {
@@ -47,6 +47,6 @@ const TypeingMessage = () => {
          ))}
       </TypeingMessageWrapper>
    );
-};
+});
 
 export default TypeingMessage;
