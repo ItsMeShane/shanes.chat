@@ -13,7 +13,7 @@ export const PhoneContainer = styled.div`
 `;
 
 export const PhoneImage = styled.div`
-    background-image: url('iPhone.png');
+    background-image: url('images/iPhone.png');
     background-size: cover;
     display: flex;
     justify-content: center;
