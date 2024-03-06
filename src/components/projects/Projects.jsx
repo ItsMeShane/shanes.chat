@@ -20,7 +20,6 @@ const Projects = () => {
          slider.appendChild(slides[0]);
       } else {
          slider.prepend(slides[slides.length - 1]);
-         slider.prepend(slides[slides.length - 1]);
       }
    }, []);
 

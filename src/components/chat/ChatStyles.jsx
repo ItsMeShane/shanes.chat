@@ -41,6 +41,7 @@ export const Messages = styled.div`
    transition: all 2s ease;
    scrollbar-width: none;
    scroll-behavior: smooth;
+   line-height:1.25em;
 `;
 export const SentMessage = styled.div`
    background-color: #007bff;

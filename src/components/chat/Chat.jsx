@@ -111,7 +111,7 @@ const Chat = () => {
          <ChatContainer>
             <Messages>
                <ChatHeader>
-                  <ProfileImage onClick={resetThread} src='pfp.png' alt='pfp' />
+                  <ProfileImage onClick={resetThread} src='images/pfp.png' alt='pfp' />
                </ChatHeader>
                {messageList.map((message, index) =>
                   message.sender === 'user' ? (
