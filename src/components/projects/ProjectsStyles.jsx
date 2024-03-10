@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+export const ProjectsWrapper = styled.div`
+   overflow: hidden;
+`;
 
 export const ProjectsContainer = styled.div`
    position: relative;
@@ -14,20 +17,20 @@ export const ProjectsContainer = styled.div`
 
 export const Content = styled.div`
    position: relative;
-
    transition: 0.25s;
    transition-delay: 0s;
    transform: translateY(40px);
-   opacity: 0;
    width: fit-content;
    margin: 20px;
    border-radius: 15px;
    background: #e6e6e6e6;
+   opacity: 0;
+   visibility: hidden;
+   user-select: none;
 `;
 export const Title = styled.h3`
    margin: 10px;
-   font-family:'Poppins';
-`
+`;
 export const Slider = styled.div`
    position: absolute;
    inset: 50px 30px 200px 30px;
@@ -36,11 +39,11 @@ export const Slider = styled.div`
 
 export const Slides = styled.div`
    position: absolute;
-   transform: translateY(-50%);
    width: 75px;
    height: 100px;
    top: initial;
-   bottom: -175px;
+   transform: translateY(-60%); /* give transition effect */
+   bottom: -185px;
    left: 400px;
    background: var(--img);
    background-size: cover;
@@ -58,6 +61,7 @@ export const Slides = styled.div`
    }
 
    &:nth-child(2) {
+      cursor: pointer;
       left: 0;
       opacity: 1;
    }
@@ -77,13 +81,15 @@ export const Slides = styled.div`
          opacity: 1;
          transform: translateY(0px);
          transition-delay: 0.5s;
+         visibility: visible;
+         user-select: auto;
       }
    }
    &:nth-child(4) {
+      cursor: pointer;
       opacity: 1;
       left: 245px;
    }
-   
 `;
 
 export const Buttons = styled.div`
@@ -103,22 +109,10 @@ export const Button = styled.span`
    justify-content: center;
    align-items: center;
    border-radius: 50%;
+   font-size: 2.5rem;
+   color: #e6e6e6;
 
    &:active {
       opacity: 0.5;
-   }
-
-   &::before {
-      content: '';
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      border-top: 4px solid #fff;
-      border-left: 4px solid #fff;
-      transform: rotate(315deg) translate(2px, 2px);
-   }
-
-   &:nth-child(2) {
-      transform: rotate(180deg) translate(2px, 2px);
    }
 `;

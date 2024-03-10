@@ -4,12 +4,13 @@ import {
    Buttons,
    Content,
    ProjectsContainer,
+   ProjectsWrapper,
    Slider,
    Slides,
    Title,
 } from './ProjectsStyles';
 
-const Projects = () => {
+const Work = () => {
    const sliderRef = useRef(null);
 
    const cycleSlide = useCallback((offset) => {
@@ -40,67 +41,45 @@ const Projects = () => {
       },
       [cycleSlide]
    );
-
+   const projectData = [
+      { imgPath: 'images/projects/pj0.png', title: 'Project 1' },
+      { imgPath: 'images/projects/pj1.png', title: 'Project 2' },
+      { imgPath: 'images/projects/pj2.png', title: 'Project 3' },
+      { imgPath: 'images/projects/pj3.png', title: 'Project 4' },
+      { imgPath: 'images/projects/pj4.png', title: 'Project 5' },
+      { imgPath: 'images/projects/pj5.png', title: 'Project 6' },
+      { imgPath: 'images/projects/pj6.png', title: 'Project 7' },
+      { imgPath: 'images/projects/pj7.png', title: 'Project 8' },
+      { imgPath: 'images/projects/pj8.png', title: 'Project 9' },
+      { imgPath: 'images/projects/pj9.png', title: 'Project 10' },
+   ];
    return (
-      <ProjectsContainer>
-         <Slider ref={sliderRef} className='slider' onClick={handleSliderClick}>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj0.png` }}>
-               <Content>
-                  <Title>Project 1</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj1.png` }}>
-               <Content>
-                  <Title>Project 2</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj2.png` }}>
-               <Content>
-                  <Title>Project 3</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj3.png` }}>
-               <Content>
-                  <Title>Project 4</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj4.png` }}>
-               <Content>
-                  <Title>Project 5</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj5.png` }}>
-               <Content>
-                  <Title>Project 6</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj6.png` }}>
-               <Content>
-                  <Title>Project 7</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj7.png` }}>
-               <Content>
-                  <Title>Project 8</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj8.png` }}>
-               <Content>
-                  <Title>Project 9</Title>
-               </Content>
-            </Slides>
-            <Slides className='slides' style={{ '--img': `url(images/projects/pj9.png` }}>
-               <Content>
-                  <Title>Project 10</Title>
-               </Content>
-            </Slides>{' '}
-         </Slider>
-         <Buttons>
-            <Button className='prev' onClick={() => cycleSlide(-1)}></Button>
-            <Button className='next' onClick={() => cycleSlide(1)}></Button>
-         </Buttons>
-      </ProjectsContainer>
+      <ProjectsWrapper>
+         <ProjectsContainer>
+            <Slider ref={sliderRef}  className='slider' onClick={handleSliderClick}>
+               {projectData.map((project, index) => (
+                  <Slides
+                     key={index}
+                     className='slides'
+                     style={{ '--img': `url(${project.imgPath})` }}
+                  >
+                     <Content>
+                        <Title>{project.title}</Title>
+                     </Content>
+                  </Slides>
+               ))}
+            </Slider>
+            <Buttons>
+               <Button className='prev' onClick={() => cycleSlide(-1)}>
+                  <ion-icon name='return-down-back-outline'></ion-icon>
+               </Button>
+               <Button className='next' onClick={() => cycleSlide(1)}>
+                  <ion-icon name='return-down-forward-outline'></ion-icon>
+               </Button>
+            </Buttons>
+         </ProjectsContainer>
+      </ProjectsWrapper>
    );
 };
 
-export default Projects;
+export default Work;
