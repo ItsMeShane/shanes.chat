@@ -3,6 +3,7 @@ import {
    Button,
    Buttons,
    Description,
+   Image,
    Links,
    ProjectsContainer,
    ProjectsWrapper,
@@ -40,9 +41,6 @@ const Projects = () => {
             case 1:
                cycleSlide(-1);
                break;
-            case 2:
-               toggleFlip(event);
-               break;
             case 3:
                cycleSlide(1);
                break;
@@ -71,11 +69,13 @@ const Projects = () => {
          <ProjectsContainer>
             <Slider ref={sliderRef} className='slider' onClick={handleSliderClick}>
                {projectData.map((project, index) => (
-                  <Slides
-                     key={index}
-                     className='slides flip'
-                     style={{ '--img': `url(${project.imgPath})` }}
-                  >
+                  <Slides key={index} className='slides'>
+                     <Image
+                        src={project.imgPath}
+                        alt={project.title}
+                        onClick={toggleFlip}
+                        draggable={false}
+                     />
                      <Title>{project.title}</Title>
                      <Description>{project.description}</Description>
                      <Links>

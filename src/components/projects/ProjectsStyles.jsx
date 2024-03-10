@@ -36,8 +36,7 @@ export const Description = styled.span`
    padding: 10px;
    cursor: auto;
    position: absolute;
-   transition: opacity 0.25s;
-   transition-delay: 0.25s;
+   transition: 0.25s;
 
    opacity: 0;
    visibility: hidden;
@@ -49,15 +48,14 @@ export const Description = styled.span`
 
    right: 0px;
    width: 200px;
-   height:fit-content;
+   height: fit-content;
 `;
 export const Links = styled.div`
    margin: 20px;
    padding: 10px;
    cursor: auto;
    position: absolute;
-   transition: opacity 0.25s;
-   transition-delay: 0.25s;
+   transition: 0.25s;
 
    opacity: 0;
    visibility: hidden;
@@ -75,8 +73,19 @@ export const Links = styled.div`
    display: flex;
    flex-direction: column;
    color: #000;
+
+   & a, a:hover, a:active {
+      color: #000f71;
+   }
 `;
 
+export const Image = styled.img`
+   cursor: pointer;
+   width:100%;
+   height:100%;
+   border-radius: 20px;
+   user-select:none;
+`;
 export const Slider = styled.div`
    position: absolute;
    inset: 50px 30px 200px 30px;
@@ -84,25 +93,20 @@ export const Slider = styled.div`
 `;
 
 export const Slides = styled.div`
-   cursor: pointer;
    position: absolute;
    width: 75px;
    height: 100px;
    top: initial;
-   transform: translateY(-60%); /* give transition effect */
+   /* bounce effect */
+   transform: translateY(-60%); 
    bottom: -185px;
+
    left: 400px;
-   background: var(--img);
-   background-size: cover;
-   background-position: center;
    transition: 0.5s;
-   border-radius: 20px;
    box-shadow: 0 25px 50px #0006;
    opacity: 0;
-
+   border-radius: 20px;
    display: flex;
-   /* justify-content: flex-start; */
-   /* align-items: flex-end; */
 
    &:nth-child(1) {
       left: -125px;
@@ -127,9 +131,16 @@ export const Slides = styled.div`
       ${Title} {
          opacity: 1;
          transform: translateY(0px);
-         transition-delay: 0.5s;
+         transition-delay:0.5s;
          visibility: visible;
          user-select: auto;
+      }
+      ${Links}, ${Description} {
+         transition: 0.25s;
+         transition-delay:0.1s;
+         opacity: 0;
+         visibility: hidden;
+         user-select: none;
       }
       &.flip {
          transform: scaleX(-1);
