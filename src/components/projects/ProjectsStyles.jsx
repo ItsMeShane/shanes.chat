@@ -15,7 +15,6 @@ export const ProjectsContainer = styled.div`
    align-items: center;
 `;
 
-export const Content = styled.div``;
 export const Title = styled.h3`
    position: absolute;
    margin: 20px;

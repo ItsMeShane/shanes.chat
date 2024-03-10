@@ -2,7 +2,6 @@ import React, { useCallback, useRef } from 'react';
 import {
    Button,
    Buttons,
-   Content,
    Description,
    Links,
    ProjectsContainer,
