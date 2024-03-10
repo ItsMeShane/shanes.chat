@@ -3,20 +3,25 @@ import {
    Button,
    Buttons,
    Content,
+   Description,
+   Links,
    ProjectsContainer,
    ProjectsWrapper,
    Slider,
    Slides,
    Title,
 } from './ProjectsStyles';
+import { projectData } from './ProjectsData';
 
-const Work = () => {
+const Projects = () => {
    const sliderRef = useRef(null);
 
    const cycleSlide = useCallback((offset) => {
       const slider = sliderRef.current;
       if (!slider) return;
       const slides = Array.from(slider.children);
+      slides.forEach((slide) => slide.classList.remove('flip'));
+      slides.forEach((slide) => slide.classList.remove('unflip'));
       if (offset > 0) {
          slider.appendChild(slides[0]);
       } else {
@@ -29,43 +34,62 @@ const Work = () => {
          const slider = sliderRef.current;
          const clickedSlide = event.target.closest('.slides');
          if (!slider || !clickedSlide) return;
-
          const slides = Array.from(slider.children);
          const clickedIndex = slides.indexOf(clickedSlide);
 
-         if (clickedIndex === 1) {
-            cycleSlide(-1);
-         } else if (clickedIndex === 3) {
-            cycleSlide(1);
+         switch (clickedIndex) {
+            case 1:
+               cycleSlide(-1);
+               break;
+            case 2:
+               toggleFlip(event);
+               break;
+            case 3:
+               cycleSlide(1);
+               break;
+            default:
+               break;
          }
       },
       [cycleSlide]
    );
-   const projectData = [
-      { imgPath: 'images/projects/pj0.png', title: 'Project 1' },
-      { imgPath: 'images/projects/pj1.png', title: 'Project 2' },
-      { imgPath: 'images/projects/pj2.png', title: 'Project 3' },
-      { imgPath: 'images/projects/pj3.png', title: 'Project 4' },
-      { imgPath: 'images/projects/pj4.png', title: 'Project 5' },
-      { imgPath: 'images/projects/pj5.png', title: 'Project 6' },
-      { imgPath: 'images/projects/pj6.png', title: 'Project 7' },
-      { imgPath: 'images/projects/pj7.png', title: 'Project 8' },
-      { imgPath: 'images/projects/pj8.png', title: 'Project 9' },
-      { imgPath: 'images/projects/pj9.png', title: 'Project 10' },
-   ];
+
+   const toggleFlip = (event) => {
+      const clickedSlide = event.target.closest('.slides');
+      if (clickedSlide.classList.contains('flip')) {
+         clickedSlide.classList.remove('flip');
+         clickedSlide.classList.add('unflip');
+      } else if (clickedSlide.classList.contains('unflip')) {
+         clickedSlide.classList.remove('unflip');
+         clickedSlide.classList.add('flip');
+      } else {
+         clickedSlide.classList.add('flip');
+      }
+   };
+
    return (
       <ProjectsWrapper>
          <ProjectsContainer>
-            <Slider ref={sliderRef}  className='slider' onClick={handleSliderClick}>
+            <Slider ref={sliderRef} className='slider' onClick={handleSliderClick}>
                {projectData.map((project, index) => (
                   <Slides
                      key={index}
-                     className='slides'
+                     className='slides flip'
                      style={{ '--img': `url(${project.imgPath})` }}
                   >
-                     <Content>
-                        <Title>{project.title}</Title>
-                     </Content>
+                     <Title>{project.title}</Title>
+                     <Description>{project.description}</Description>
+                     <Links>
+                        <a href={project.github} target='_blank' title='GitHub'>
+                           <ion-icon name='logo-github'></ion-icon>
+                        </a>
+                        <a href={project.youtube} target='_blank' title='YouTube'>
+                           <ion-icon name='logo-youtube'></ion-icon>
+                        </a>
+                        <a href={project.live} target='_blank' title='Live Demo'>
+                           <ion-icon name='pulse-outline'></ion-icon>
+                        </a>
+                     </Links>
                   </Slides>
                ))}
             </Slider>
@@ -82,4 +106,4 @@ const Work = () => {
    );
 };
 
-export default Work;
+export default Projects;

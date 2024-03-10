@@ -15,22 +15,69 @@ export const ProjectsContainer = styled.div`
    align-items: center;
 `;
 
-export const Content = styled.div`
-   position: relative;
-   transition: 0.25s;
-   transition-delay: 0s;
-   transform: translateY(40px);
-   width: fit-content;
+export const Content = styled.div``;
+export const Title = styled.h3`
+   position: absolute;
    margin: 20px;
-   border-radius: 15px;
-   background: #e6e6e6e6;
+   cursor: auto;
+   transition: 0.25s;
+   transform: translateY(40px);
    opacity: 0;
    visibility: hidden;
    user-select: none;
+
+   border-radius: 15px;
+   padding: 10px;
+   background: #e6e6e6e6;
+   width: fit-content;
+   align-self: flex-end;
 `;
-export const Title = styled.h3`
-   margin: 10px;
+export const Description = styled.span`
+   margin: 20px;
+   padding: 10px;
+   cursor: auto;
+   position: absolute;
+   transition: opacity 0.25s;
+   transition-delay: 0.25s;
+
+   opacity: 0;
+   visibility: hidden;
+   user-select: none;
+
+   border-radius: 15px;
+   background: #e6e6e6e6;
+   align-self: flex-start;
+
+   right: 0px;
+   width: 200px;
+   height:fit-content;
 `;
+export const Links = styled.div`
+   margin: 20px;
+   padding: 10px;
+   cursor: auto;
+   position: absolute;
+   transition: opacity 0.25s;
+   transition-delay: 0.25s;
+
+   opacity: 0;
+   visibility: hidden;
+   user-select: none;
+
+   border-radius: 15px;
+   background: #e6e6e6e6;
+   align-self: flex-start;
+
+   left: 0px;
+   width: fit-content;
+   font-size: 1.5rem;
+   max-height: 50%;
+
+   display: flex;
+   flex-direction: column;
+   color: #000;
+`;
+
 export const Slider = styled.div`
    position: absolute;
    inset: 50px 30px 200px 30px;
@@ -38,6 +85,7 @@ export const Slider = styled.div`
 `;
 
 export const Slides = styled.div`
+   cursor: pointer;
    position: absolute;
    width: 75px;
    height: 100px;
@@ -51,17 +99,17 @@ export const Slides = styled.div`
    transition: 0.5s;
    border-radius: 20px;
    box-shadow: 0 25px 50px #0006;
-   display: flex;
-   justify-content: flex-start;
-   align-items: flex-end;
    opacity: 0;
+
+   display: flex;
+   /* justify-content: flex-start; */
+   /* align-items: flex-end; */
 
    &:nth-child(1) {
       left: -125px;
    }
 
    &:nth-child(2) {
-      cursor: pointer;
       left: 0;
       opacity: 1;
    }
@@ -77,16 +125,34 @@ export const Slides = styled.div`
       opacity: 1;
       z-index: 1;
 
-      ${Content} {
+      ${Title} {
          opacity: 1;
          transform: translateY(0px);
          transition-delay: 0.5s;
          visibility: visible;
          user-select: auto;
       }
+      &.flip {
+         transform: scaleX(-1);
+         opacity: 1;
+         ${Title} {
+            transform: scaleX(-1);
+            transition-delay: 0s;
+         }
+         ${Links}, ${Description} {
+            transform: scaleX(-1);
+            opacity: 1;
+            visibility: visible;
+            user-select: auto;
+         }
+      }
+      &.unflip {
+         ${Links}, ${Description}, ${Title} {
+            transition-delay: 0s;
+         }
+      }
    }
    &:nth-child(4) {
-      cursor: pointer;
       opacity: 1;
       left: 245px;
    }
