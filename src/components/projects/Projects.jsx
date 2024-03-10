@@ -79,13 +79,13 @@ const Projects = () => {
                      <Title>{project.title}</Title>
                      <Description>{project.description}</Description>
                      <Links>
-                        <a href={project.github} target='_blank' title='GitHub'>
+                        <a href={project.github} target='_blank' rel="noopener noreferrer" title='GitHub'>
                            <ion-icon name='logo-github'></ion-icon>
                         </a>
-                        <a href={project.youtube} target='_blank' title='YouTube'>
+                        <a href={project.youtube} target='_blank' rel="noopener noreferrer" title='YouTube'>
                            <ion-icon name='logo-youtube'></ion-icon>
                         </a>
-                        <a href={project.live} target='_blank' title='Live Demo'>
+                        <a href={project.live} target='_blank' rel="noopener noreferrer" title='Live Demo'>
                            <ion-icon name='pulse-outline'></ion-icon>
                         </a>
                      </Links>
