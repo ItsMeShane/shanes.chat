@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '../navigation/Navigation';
 import styled from 'styled-components';
-import About from '../about/About';
+import Connect from '../connect/Connect';
 import Projects from '../projects/Projects';
 import Chat from '../chat/Chat';
 import Work from '../work/Work';
@@ -27,7 +27,7 @@ const Screen = () => {
       <ScreenContainer>
          <Navigation onPageChange={handlePageChange} />
          <PageContainer>
-            {activePage === 'About' && <About />}
+            {activePage === 'Connect' && <Connect />}
             {activePage === 'Projects' && <Projects />}
             {activePage === 'Chat' && <Chat />}
             {activePage === 'Work' && <Work />}

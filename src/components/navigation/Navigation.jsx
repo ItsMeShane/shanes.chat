@@ -22,7 +22,7 @@ const Navigation = ({ onPageChange }) => {
 
    const handleLinkClick = (index) => {
       setActiveLink(index);
-      const pages = ['About', 'Projects', 'Chat', 'Work', 'Quiz'];
+      const pages = ['Connect', 'Projects', 'Chat', 'Work', 'Quiz'];
       onPageChange(pages[index]);
    };
 
@@ -33,7 +33,7 @@ const Navigation = ({ onPageChange }) => {
                <Link
                   className={activeLink === 0 ? 'active' : ''}
                   onClick={() => handleLinkClick(0)}
-                  href='#about'
+                  href='#connect'
                >
                   <Icon>
                      <ion-icon name='planet-outline'></ion-icon>
