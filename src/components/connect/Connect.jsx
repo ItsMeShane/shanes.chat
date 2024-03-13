@@ -37,7 +37,7 @@ const Connect = () => {
             </SegmentLinks>
          </Segment>
          <Segment>
-            <SegmentTitle>Phone</SegmentTitle>
+            <SegmentTitle>Mobile</SegmentTitle>
             <SegmentLinks>
                <span>(902) 754-1407</span>
                <div onClick={copyText('(902) 754-1407')}>
@@ -57,12 +57,12 @@ const Connect = () => {
             </SegmentLinks>
          </Segment>
          <Segment>
-            <SegmentTitle>YouTube</SegmentTitle>
+            <SegmentTitle>Linkedin</SegmentTitle>
             <SegmentLinks>
-               <div onClick={copyText('www.youtube.com/@its_me_shane')}>
+               <div onClick={copyText('www.linkedin.com/in/shane-field/')}>
                   <ion-icon name='copy-outline'></ion-icon>
                </div>
-               <a href='https://www.youtube.com/@its_me_shane' target='_blank' rel="noopener noreferrer">
+               <a href='https://www.linkedin.com/in/shane-field/' target='_blank' rel="noopener noreferrer">
                   <ion-icon name='open-outline'></ion-icon>
                </a>
             </SegmentLinks>
