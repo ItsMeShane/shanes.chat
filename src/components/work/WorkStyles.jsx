@@ -1,10 +1,89 @@
 import styled from 'styled-components';
 
-export const WorkContainer = styled.div`
-   background-color: #cc5598;
-   position: relative;
+export const WorkWrapper = styled.div`
+   display: flex;
+   justify-content: center;
+   background-color: #e6e6e6;
    border-radius: 0px 0px 40px 40px;
+`;
+
+export const WorkContainer = styled.div`
+   position: relative;
    display: flex;
    flex-direction: column;
+   flex-wrap: nowrap;
+   justify-content: start;
+   width: 350px;
+   height: fit-content;
+   margin-top: 50px;
+   margin-bottom: 50px;
+`;
+
+export const Card = styled.label`
+   height: 70px;
+   border-radius: 1rem 1rem 2rem 2rem;
+   cursor: pointer;
+   margin: 0 10px;
+   display: flex;
+   flex-direction: column;
+   transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
+   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
+   position: relative;
+   overflow: hidden;
+`;
+
+export const Content = styled.div`
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   overflow: hidden;
+   opacity:0;
+   transition:1s;
+`;
+export const Header = styled.div`
+   height: 50px;
+   margin-top: 25px;
+   display: flex;
    align-items: center;
+   .company {
+      margin:10px;
+      margin-right: auto;
+   }
+   .dates {
+      margin:10px;
+      margin-left: auto;
+      font-size:0.8rem;
+   }
+`;
+
+export const Footer = styled.div`
+   color: #7c267a;
+   height: 70px;
+   display: flex;
+   align-items: center;
+`;
+
+export const Logo = styled.img`
+   background: #ffffff;
+   background-size: cover;
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+   margin: 10px;
+`;
+
+export const Title = styled.h4`
+   text-transform: uppercase;
+`;
+
+export const Input = styled.input`
+   display: none;
+   &:checked + ${Card} {
+      height: 300px !important;
+      cursor: auto;
+      ${Content} {
+         opacity:1;
+      }
+   }
 `;
