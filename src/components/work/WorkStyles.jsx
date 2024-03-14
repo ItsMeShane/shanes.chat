@@ -37,24 +37,45 @@ export const Content = styled.div`
    display: flex;
    flex-direction: column;
    position: relative;
+   opacity: 0;
+   transition: 1s;
    overflow: hidden;
-   opacity:0;
-   transition:1s;
 `;
 export const Header = styled.div`
+   flex: 1;
    height: 50px;
+   margin: 20px;
    margin-top: 25px;
+   margin-bottom: 0px;
    display: flex;
    align-items: center;
+   a {
+      color: black;
+      text-decoration: none;
+      &:active {
+         color: gray;
+      }
+   }
    .company {
-      margin:10px;
       margin-right: auto;
+      font-weight: 600;
    }
-   .dates {
-      margin:10px;
+   .dataWrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+   }
+   .small {
       margin-left: auto;
-      font-size:0.8rem;
+      font-size: 0.8rem;
    }
+`;
+
+export const Description = styled.div`
+   margin: 20px;
+   margin-bottom: 0;
+   height: 100%;
+   white-space: pre-wrap;
 `;
 
 export const Footer = styled.div`
@@ -83,7 +104,7 @@ export const Input = styled.input`
       height: 300px !important;
       cursor: auto;
       ${Content} {
-         opacity:1;
+         opacity: 1;
       }
    }
 `;

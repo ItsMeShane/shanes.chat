@@ -9,6 +9,7 @@ import {
    WorkWrapper,
    Content,
    Header,
+   Description,
 } from './WorkStyles';
 import { workData } from './WorkData';
 
@@ -22,9 +23,22 @@ const Work = () => {
                   <Card htmlFor={job.id}>
                      <Content>
                         <Header>
-                           <span className='company'>{job.company}</span>
-                           <span className='dates'>{job.dates}</span>
+                           <a
+                              href={job.link}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                           >
+                              <span className='company'>{job.company}</span>
+                           </a>
+                           <div className='dataWrapper'>
+
+                           <span className='small'>{job.dates}</span>
+                           <span className='small'>{job.location}</span>
+                           </div>
                         </Header>
+                        <Description>
+                           <span>{job.description}</span>
+                        </Description>
                      </Content>
                      <Footer>
                         <Logo src={job.logoSrc} alt={job.alt} />
