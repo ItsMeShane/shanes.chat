@@ -34,32 +34,33 @@ export const ProfileImage = styled.img`
 `;
 
 // messages
-export const Messages = styled.div`
+export const MessageContainer = styled.div`
    height: 100%;
    width: 100%;
    overflow-y: auto;
    transition: all 2s ease;
    scrollbar-width: none;
    scroll-behavior: smooth;
-   line-height:1.25em;
-`;
-export const SentMessage = styled.div`
-   background-color: #007bff;
-   margin: 5px 25px 5px auto;
-   color: #fff;
-   border-radius: 10px 10px 0px 10px;
+   line-height: 1.25em;
+   `;
+export const Message = styled.div`
    padding: 8px;
    max-width: 70%;
    width: fit-content;
-`;
-export const ReceivedMessage = styled.div`
-   background-color: #e0e0e0;
-   margin: 5px auto 5px 25px;
-   color: #000;
-   border-radius: 10px 10px 10px 0px;
-   padding: 8px;
-   max-width: 70%;
-   width: fit-content;
+   white-space: pre-wrap;
+
+   &.sent {
+      background-color: #007bff;
+      margin: 5px 25px 5px auto;
+      color: #fff;
+      border-radius: 10px 10px 0px 10px;
+   }
+   &.received {
+      background-color: #e0e0e0;
+      margin: 5px auto 5px 25px;
+      color: #000;
+      border-radius: 10px 10px 10px 0px;
+   }
 `;
 
 // input
@@ -99,6 +100,6 @@ export const ChatButton = styled.button`
 
    &:active {
       scale: 1.2;
-      transform:translateY(-5px);
+      transform: translateY(-5px);
    }
 `;

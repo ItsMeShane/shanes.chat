@@ -5,9 +5,8 @@ import {
    ProfileImage,
    InputContainer,
    InputTextArea,
-   Messages,
-   SentMessage,
-   ReceivedMessage,
+   MessageContainer,
+   Message,
    ChatButton,
 } from './ChatStyles';
 import { createThread, loadMessages, sendMessageToAssistant } from './Assistant';
@@ -108,31 +107,32 @@ const Chat = () => {
    };
 
    return (
-         <ChatContainer>
-            <Messages>
-               <ChatHeader>
-                  <ProfileImage onClick={resetThread} src='images/pfp.png' alt='pfp' />
-               </ChatHeader>
-               {messageList.map((message, index) =>
-                  message.sender === 'user' ? (
-                     <SentMessage key={index}>{message.text}</SentMessage>
-                  ) : (
-                     <ReceivedMessage key={index}>{message.text}</ReceivedMessage>
-                  )
-               )}
-               {isTypeing && <TypeingMessage ref={messagesEndRef} />}
-               <div ref={messagesEndRef} />
-            </Messages>
-            <InputContainer>
-               <InputTextArea
-                  value={textAreaValue}
-                  placeholder='Ask about Shane!'
-                  onChange={(e) => setTextAreaValue(e.target.value)}
-                  onKeyDown={handleKeyDown}
-               />
-               <ChatButton onClick={sendMessage}>↑</ChatButton>
-            </InputContainer>
-         </ChatContainer>
+      <ChatContainer>
+         <MessageContainer>
+            <ChatHeader>
+               <ProfileImage onClick={resetThread} src='images/pfp.png' alt='pfp' />
+            </ChatHeader>
+            {messageList.map((message, index) => (
+               <Message
+                  key={index}
+                  className={message.sender === 'user' ? 'sent' : 'received'}
+               >
+                  {message.text}
+               </Message>
+            ))}
+            {isTypeing && <TypeingMessage ref={messagesEndRef} />}
+            <div ref={messagesEndRef} />
+         </MessageContainer>
+         <InputContainer>
+            <InputTextArea
+               value={textAreaValue}
+               placeholder='Ask about Shane!'
+               onChange={(e) => setTextAreaValue(e.target.value)}
+               onKeyDown={handleKeyDown}
+            />
+            <ChatButton onClick={sendMessage}>↑</ChatButton>
+         </InputContainer>
+      </ChatContainer>
    );
 };
 
