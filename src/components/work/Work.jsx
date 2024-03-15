@@ -36,7 +36,7 @@ const Work = () => {
                            <span className='small'>{job.location}</span>
                            </div>
                         </Header>
-                        <Description>
+                        <Description style={{'--topMargin':job.topMargin}}>
                            <span>{job.description}</span>
                         </Description>
                      </Content>

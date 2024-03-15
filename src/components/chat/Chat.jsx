@@ -4,14 +4,15 @@ import {
    ChatHeader,
    ProfileImage,
    InputContainer,
-   InputTextArea,
+   TextArea,
    MessageContainer,
    Message,
-   ChatButton,
+   Button,
 } from './ChatStyles';
 import { createThread, loadMessages, sendMessageToAssistant } from './Assistant';
 import starterMessages from './Assistant';
 import TypeingMessage from './TypeingMessage';
+import getRandomMessage from './MessagePrompts';
 
 const Chat = () => {
    const [textAreaValue, setTextAreaValue] = useState('');
@@ -106,6 +107,10 @@ const Chat = () => {
       });
    };
 
+   const handleDiceClick = () => {
+      setTextAreaValue(getRandomMessage());
+   };
+
    return (
       <ChatContainer>
          <MessageContainer>
@@ -124,13 +129,18 @@ const Chat = () => {
             <div ref={messagesEndRef} />
          </MessageContainer>
          <InputContainer>
-            <InputTextArea
+            <TextArea
                value={textAreaValue}
                placeholder='Ask about Shane!'
                onChange={(e) => setTextAreaValue(e.target.value)}
                onKeyDown={handleKeyDown}
             />
-            <ChatButton onClick={sendMessage}>↑</ChatButton>
+            <Button onClick={sendMessage}>
+               <ion-icon name={'send-outline'}></ion-icon>
+            </Button>
+            <Button id='dice' onClick={handleDiceClick}>
+               🎲
+            </Button>
          </InputContainer>
       </ChatContainer>
    );

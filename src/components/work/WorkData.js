@@ -15,7 +15,7 @@ export const workData = [
       alt: 'mind by design logo',
       title: 'IT-Web Design Associate',
       company: 'Mind By Design',
-      dates: 'Jan. 2023 - Current',
+      dates: 'Jan 2023 - Current',
       location: 'Remote',
       description:
          'Developed and maintained company websites using tools such as GHL, JavaScript, and CSS. Collaborated with team members to ensure optimal functionality and user experience.',
