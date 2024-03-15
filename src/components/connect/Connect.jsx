@@ -28,12 +28,12 @@ const Connect = () => {
          <Segment>
             <SegmentTitle>Email</SegmentTitle>
             <SegmentLinks>
-               <div onClick={copyText('shane.koester.contact@gmail.com')}>
-                  <ion-icon name='copy-outline'></ion-icon>
-               </div>
                <a href="mailto:shane.koester.contact@gmail.com">
                   <ion-icon name='open-outline'></ion-icon>
                </a>
+               <div onClick={copyText('shane.koester.contact@gmail.com')}>
+                  <ion-icon name='copy-outline'></ion-icon>
+               </div>
             </SegmentLinks>
          </Segment>
          <Segment>
@@ -48,23 +48,23 @@ const Connect = () => {
          <Segment>
             <SegmentTitle>GitHub</SegmentTitle>
             <SegmentLinks>
-               <div onClick={copyText('www.github.com/ItsMeShane')}>
-                  <ion-icon name='copy-outline'></ion-icon>
-               </div>
                <a href='https://www.github.com/ItsMeShane' target='_blank' rel="noopener noreferrer">
                   <ion-icon name='open-outline'></ion-icon>
                </a>
+               <div onClick={copyText('www.github.com/ItsMeShane')}>
+                  <ion-icon name='copy-outline'></ion-icon>
+               </div>
             </SegmentLinks>
          </Segment>
          <Segment>
             <SegmentTitle>Linkedin</SegmentTitle>
             <SegmentLinks>
-               <div onClick={copyText('www.linkedin.com/in/shane-field/')}>
-                  <ion-icon name='copy-outline'></ion-icon>
-               </div>
                <a href='https://www.linkedin.com/in/shane-field/' target='_blank' rel="noopener noreferrer">
                   <ion-icon name='open-outline'></ion-icon>
                </a>
+               <div onClick={copyText('www.linkedin.com/in/shane-field/')}>
+                  <ion-icon name='copy-outline'></ion-icon>
+               </div>
             </SegmentLinks>
          </Segment>
       </ConnectContainer>
