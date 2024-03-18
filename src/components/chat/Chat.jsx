@@ -8,6 +8,7 @@ import {
    MessageContainer,
    Message,
    Button,
+   Dice,
 } from './ChatStyles';
 import { createThread, loadMessages, sendMessageToAssistant } from './Assistant';
 import starterMessages from './Assistant';
@@ -138,9 +139,7 @@ const Chat = () => {
             <Button onClick={sendMessage}>
                <ion-icon name={'send-outline'}></ion-icon>
             </Button>
-            <Button id='dice' onClick={handleDiceClick}>
-               🎲
-            </Button>
+            <Dice onClick={handleDiceClick}>🎲</Dice>
          </InputContainer>
       </ChatContainer>
    );

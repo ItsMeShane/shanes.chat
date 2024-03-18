@@ -97,9 +97,7 @@ export const Slides = styled.div`
    width: 75px;
    height: 100px;
    top: initial;
-   /* bounce effect */
-   transform: translateY(-60%); 
-   bottom: -185px;
+   bottom: -125px;
 
    left: 400px;
    transition: 0.5s;
@@ -117,13 +115,11 @@ export const Slides = styled.div`
       opacity: 1;
    }
    &:nth-child(3) {
-      position: absolute;
       top: initial;
       bottom: 0px;
       left: 0;
       width: 100%;
       height: 100%;
-      transform: translateY(0);
       box-shadow: 0 25px 50px #0000;
       opacity: 1;
       z-index: 1;

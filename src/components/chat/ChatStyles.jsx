@@ -99,13 +99,12 @@ const spinAnimation = keyframes`
 `;
 export const Button = styled.button`
    background-color: transparent;
-   width: fit-content;
-   height: fit-content;
+   width: 55px;
+   height: 55px;
    border: none;
    cursor: pointer;
    font-size: 3rem;
-   transition: all 0.2s ease-in-out;
-   line-height: 50px;
+   transition: scale 0.2s ease-in-out;
    color: #26547c;
    margin: 5px;
    margin-right: 25px;
@@ -113,19 +112,31 @@ export const Button = styled.button`
    &:active {
       scale: 1.1;
    }
-   &#dice {
-      position: absolute;
-      font-size: 2.2rem;
-      width: 60px;
-      height: 60px;
-      top: 0px;
-      right: 0px;
-      border-radius: 50%;
-      background-color: #26547caa;
-      border: 3px solid #26547c;
+`;
+export const Dice = styled.div`
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   transition: scale 0.2s ease-in-out;
+   line-height: 50px;
+   color: #26547c;
+   text-decoration: none;
+   user-select: none;
+   -webkit-user-select: none;
 
-      &:active {
-         animation: ${spinAnimation} 0.1s;
-      }
+   width: 55px;
+   height: 55px;
+   position: absolute;
+   font-size: 2.2rem;
+   top: 5px;
+   right: 25px;
+   border-radius: 50%;
+   background-color: #26547caa;
+   border: 3px solid #26547c;
+
+   &:active {
+      scale: 1.1;
+      animation: ${spinAnimation} 0.2s;
    }
 `;
