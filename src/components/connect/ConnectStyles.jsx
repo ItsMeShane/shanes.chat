@@ -7,11 +7,16 @@ export const ConnectContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
+
+   
+   @media screen and (orientation: portrait) {
+       border-radius:0;
+       max-height:calc(100vh - 100px);
+   }
 `;
 
 export const Banner = styled.div`
    width: 100%;
-   height: 350px;
    height: 320px;
    display: flex;
    justify-content: center;

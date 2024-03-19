@@ -44,9 +44,13 @@ const ScreenContainer = styled.div`
    height: 97.5%;
    border-radius: 40px;
    z-index: 1;
-
    display: flex;
    flex-direction: column;
+   @media screen and (orientation: portrait) {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+   }
 `;
 
 export const PageContainer = styled.div`
@@ -55,7 +59,6 @@ export const PageContainer = styled.div`
    > * {
       width: 100%;
       height: 100%;
-      max-height: 680px;
       overflow: hidden;
    }
 `;

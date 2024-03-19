@@ -4,9 +4,14 @@ export const QuizContainer = styled.div`
    background-color: #5555cc;
    position: relative;
    border-radius: 0px 0px 40px 40px;
+   max-height: 680px;
    display: flex;
    flex-direction: column;
    align-items: center;
+   @media screen and (orientation: portrait) {
+       border-radius:0;
+       max-height:calc(100vh - 100px);
+   }
 `;
 
 export const QuizHeader = styled.div`

@@ -13,6 +13,10 @@ export const ProjectsContainer = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
+   @media screen and (orientation: portrait) {
+      border-radius: 0;
+      max-height: calc(100vh - 100px);
+   }
 `;
 
 export const Title = styled.h3`
@@ -74,37 +78,41 @@ export const Links = styled.div`
    flex-direction: column;
    color: #000;
 
-   & a, a:hover, a:active {
+   & a,
+   a:hover,
+   a:active {
       color: #000f71;
    }
 `;
 
 export const Image = styled.img`
    cursor: pointer;
-   width:100%;
-   height:100%;
+   width: 100%;
+   height: 100%;
    border-radius: 20px;
-   user-select:none;
+   user-select: none;
 `;
 export const Slider = styled.div`
    position: absolute;
    inset: 50px 30px 200px 30px;
    border-radius: 20px;
 `;
-
 export const Slides = styled.div`
    position: absolute;
    width: 75px;
    height: 100px;
    top: initial;
    bottom: -125px;
-
-   left: 400px;
+   left: calc(100% + 75px);
    transition: 0.5s;
    box-shadow: 0 25px 50px #0006;
    opacity: 0;
    border-radius: 20px;
    display: flex;
+
+   img {
+      object-fit: cover;
+   }
 
    &:nth-child(1) {
       left: -125px;
@@ -127,13 +135,13 @@ export const Slides = styled.div`
       ${Title} {
          opacity: 1;
          transform: translateY(0px);
-         transition-delay:0.5s;
+         transition-delay: 0.5s;
          visibility: visible;
          user-select: auto;
       }
       ${Links}, ${Description} {
          transition: 0.25s;
-         transition-delay:0.1s;
+         transition-delay: 0.1s;
          opacity: 0;
          visibility: hidden;
          user-select: none;
@@ -160,7 +168,7 @@ export const Slides = styled.div`
    }
    &:nth-child(4) {
       opacity: 1;
-      left: 245px;
+      left: calc(100% - 75px);
    }
 `;
 

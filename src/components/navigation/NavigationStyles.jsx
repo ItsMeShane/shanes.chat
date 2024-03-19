@@ -3,10 +3,6 @@ import styled from 'styled-components';
 const bgColor = '#f3f3f3';
 
 export const NavigationContainer = styled.div`
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-
    display: flex;
    justify-content: center;
    align-items: center;
@@ -20,24 +16,23 @@ export const NavigationContainer = styled.div`
 
    margin-bottom: auto;
    z-index: 2;
+   @media screen and (orientation: portrait) {
+       border-radius:0;
+   }
 `;
 
 export const ListContainer = styled.ul`
    margin: 0;
-   margin-top:auto;
    padding: 0;
    box-sizing: border-box;
-
+   
+   margin-top:auto;
    display: flex;
    justify-content: center;
    width: 350px;
 `;
 
 export const ListItem = styled.li`
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-
    list-style: none;
    position: relative;
    width: 70px;
@@ -66,10 +61,6 @@ export const ListItem = styled.li`
 `;
 
 export const Link = styled.a`
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-
    position: relative;
    display: flex;
    justify-content: center;
@@ -79,10 +70,6 @@ export const Link = styled.a`
 `;
 
 export const Icon = styled.span`
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-
    position: relative;
    display: block;
    width: 55px;

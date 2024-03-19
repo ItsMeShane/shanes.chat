@@ -8,6 +8,10 @@ export const ChatContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
+   @media screen and (orientation: portrait) {
+       border-radius:0;
+       max-height:calc(100vh - 100px);
+   }
 `;
 
 // header
@@ -42,10 +46,15 @@ export const MessageContainer = styled.div`
    scrollbar-width: none;
    scroll-behavior: smooth;
    line-height: 1.25em;
+
+   max-height: 550px;
+   
+   @media screen and (orientation: portrait) {
+      max-height: none;
+   }
 `;
 export const Message = styled.div`
    padding: 8px;
-   max-width: 70%;
    max-width: 72%;
    width: fit-content;
    white-space: pre-wrap;
@@ -67,7 +76,7 @@ export const Message = styled.div`
 // input
 export const InputContainer = styled.div`
    height: 125px;
-   width: 380px;
+   width:100%;
    padding-top: 5px;
    background-color: #d5d5d5;
    display: flex;

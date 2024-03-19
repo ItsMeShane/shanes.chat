@@ -5,6 +5,10 @@ export const WorkWrapper = styled.div`
    justify-content: center;
    background-color: #e6e6e6;
    border-radius: 0px 0px 40px 40px;
+   @media screen and (orientation: portrait) {
+       border-radius:0;
+       max-height:calc(100vh - 100px);
+   }
 `;
 
 export const WorkContainer = styled.div`
@@ -17,6 +21,9 @@ export const WorkContainer = styled.div`
    height: fit-content;
    margin-top: 50px;
    margin-bottom: 50px;
+   @media screen and (orientation: portrait) {
+      width: 80%;
+   }
 `;
 
 export const Card = styled.label`
