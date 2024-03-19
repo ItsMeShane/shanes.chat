@@ -17,13 +17,10 @@ export const WorkContainer = styled.div`
    flex-direction: column;
    flex-wrap: nowrap;
    justify-content: start;
-   width: 350px;
+   width: 93%;
    height: fit-content;
    margin-top: 50px;
    margin-bottom: 50px;
-   @media screen and (orientation: portrait) {
-      width: 80%;
-   }
 `;
 
 export const Card = styled.label`

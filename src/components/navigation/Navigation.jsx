@@ -33,7 +33,6 @@ const Navigation = ({ onPageChange }) => {
                <Link
                   className={activeLink === 0 ? 'active' : ''}
                   onClick={() => handleLinkClick(0)}
-                  href='#connect'
                >
                   <Icon>
                      <ion-icon name='planet-outline'></ion-icon>
@@ -44,7 +43,6 @@ const Navigation = ({ onPageChange }) => {
                <Link
                   className={activeLink === 1 ? 'active' : ''}
                   onClick={() => handleLinkClick(1)}
-                  href='#projects'
                >
                   <Icon>
                      <ion-icon name='code-outline'></ion-icon>
@@ -55,7 +53,6 @@ const Navigation = ({ onPageChange }) => {
                <Link
                   className={activeLink === 2 ? 'active' : ''}
                   onClick={() => handleLinkClick(2)}
-                  href='#chat'
                >
                   <Icon>
                      <ion-icon name='chatbox-ellipses-outline'></ion-icon>{' '}
@@ -66,7 +63,6 @@ const Navigation = ({ onPageChange }) => {
                <Link
                   className={activeLink === 3 ? 'active' : ''}
                   onClick={() => handleLinkClick(3)}
-                  href='#work'
                >
                   <Icon>
                      <ion-icon name='layers-outline'></ion-icon>
@@ -77,7 +73,6 @@ const Navigation = ({ onPageChange }) => {
                <Link
                   className={activeLink === 4 ? 'active' : ''}
                   onClick={() => handleLinkClick(4)}
-                  href='#quiz'
                >
                   <Icon>
                      <ion-icon name='people-outline'></ion-icon>

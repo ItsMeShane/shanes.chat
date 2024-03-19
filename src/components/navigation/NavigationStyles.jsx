@@ -8,7 +8,7 @@ export const NavigationContainer = styled.div`
    align-items: center;
 
    width: 100%;
-   height:100px;
+   height: 100px;
    min-height: 100px;
    position: relative;
    background-color: ${bgColor};
@@ -17,7 +17,7 @@ export const NavigationContainer = styled.div`
    margin-bottom: auto;
    z-index: 2;
    @media screen and (orientation: portrait) {
-       border-radius:0;
+      border-radius: 0;
    }
 `;
 
@@ -25,8 +25,8 @@ export const ListContainer = styled.ul`
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   
-   margin-top:auto;
+
+   margin-top: auto;
    display: flex;
    justify-content: center;
    width: 350px;
@@ -60,7 +60,8 @@ export const ListItem = styled.li`
    }
 `;
 
-export const Link = styled.a`
+export const Link = styled.div`
+   cursor: pointer;
    position: relative;
    display: flex;
    justify-content: center;
@@ -85,7 +86,7 @@ export const Icon = styled.span`
 
 export const Indicator = styled.div`
    position: absolute;
-   top:60px;
+   top: 60px;
    width: 70px;
    height: 70px;
    background: ${bgColor};
