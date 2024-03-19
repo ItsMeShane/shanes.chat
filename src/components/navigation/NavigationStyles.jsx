@@ -60,7 +60,7 @@ export const ListItem = styled.li`
    }
 `;
 
-export const Link = styled.div`
+export const Link = styled.a`
    cursor: pointer;
    position: relative;
    display: flex;
